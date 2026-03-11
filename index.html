@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federico Greco Barragán — CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --blue: #007dc4;
+            --blue-deep: #005a8d;
+            --blue-pale: #e8f4fc;
+            --orange: #f6921e;
+            --ink: #0d1117;
+            --ink-mid: #2d3748;
+            --ink-soft: #64748b;
+            --ink-faint: #94a3b8;
+            --surface: #ffffff;
+            --surface-2: #f8fafc;
+            --line: #e2e8f0;
+            --line-dark: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--surface-2);
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ── PAGE WRAPPER ── */
+        .page {
+            max-width: 960px;
+            margin: 40px auto;
+            background: var(--surface);
+            box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+        }
+
+        /* ── HEADER HERO ── */
+        .cv-header {
+            background: var(--ink);
+            padding: 52px 56px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cv-header::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--orange), var(--blue));
+        }
+        /* grid decoration */
+        .cv-header::after {
+            content: '';
+            position: absolute; right: 0; top: 0;
+            width: 45%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+        }
+
+        .cv-name {
+            font-size: 36px; font-weight: 700; letter-spacing: -0.02em;
+            color: #fff; line-height: 1.1; margin-bottom: 6px;
+        }
+        .cv-role {
+            font-size: 13px; font-weight: 500; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--orange); margin-bottom: 24px;
+        }
+        .cv-contacts {
+            display: flex; flex-wrap: wrap; gap: 8px 24px;
+            margin-bottom: 0;
+        }
+        .cv-contact {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .cv-contact:hover { color: rgba(255,255,255,0.9); }
+        .cv-contact i { font-size: 12px; color: var(--blue); }
+
+        /* ── LAYOUT: sidebar + main ── */
+        .cv-body {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            background: var(--surface-2);
+            border-right: 1px solid var(--line);
+            padding: 44px 32px;
+        }
+        .sidebar-section { margin-bottom: 40px; }
+        .sidebar-section:last-child { margin-bottom: 0; }
+
+        .sidebar-title {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--orange);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        /* Profile text in sidebar */
+        .sidebar-profile {
+            font-size: 13px; font-weight: 300; line-height: 1.75;
+            color: var(--ink-soft);
+        }
+
+        /* Tags / pills */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag {
+            background: var(--surface);
+            border: 1px solid var(--line-dark);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 11.5px; font-weight: 500;
+            color: var(--ink-mid);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .tag:hover { border-color: var(--blue); color: var(--blue); }
+        .tag.highlight {
+            background: var(--blue-pale);
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* Language bars */
+        .lang-item { margin-bottom: 14px; }
+        .lang-item:last-child { margin-bottom: 0; }
+        .lang-name {
+            font-size: 13px; font-weight: 600; color: var(--ink-mid);
+            display: flex; justify-content: space-between; margin-bottom: 5px;
+        }
+        .lang-name span {
+            font-size: 11px; font-weight: 400; color: var(--ink-faint);
+        }
+        .lang-bar {
+            height: 3px; background: var(--line);
+            border-radius: 2px; overflow: hidden;
+        }
+        .lang-fill {
+            height: 100%; border-radius: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--orange));
+        }
+
+        /* Education items */
+        .edu-item { margin-bottom: 16px; }
+        .edu-item:last-child { margin-bottom: 0; }
+        .edu-title { font-size: 13px; font-weight: 600; color: var(--ink-mid); margin-bottom: 2px; }
+        .edu-org { font-size: 12px; font-weight: 400; color: var(--ink-soft); }
+        .edu-year { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+
+        /* ── MAIN CONTENT ── */
+        .main-content { padding: 44px 48px; }
+
+        .section { margin-bottom: 44px; }
+        .section:last-child { margin-bottom: 0; }
+
+        .section-title {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--orange);
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 16px; height: 2px;
+            background: var(--orange);
+            flex-shrink: 0;
+        }
+
+        /* ── JOB ENTRY ── */
+        .job { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+        .job:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+        .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+        .job-company {
+            font-size: 16px; font-weight: 700; color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+        .job-period {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+            color: var(--blue); white-space: nowrap;
+            background: var(--blue-pale);
+            padding: 3px 10px; border-radius: 100px;
+        }
+
+        .job-location {
+            font-size: 12px; color: var(--ink-faint);
+            margin-bottom: 12px;
+        }
+
+        .job-description {
+            font-size: 13px; font-weight: 300; line-height: 1.7;
+            color: var(--ink-soft); margin-bottom: 14px;
+            font-style: italic;
+            padding-left: 12px;
+            border-left: 2px solid var(--line);
+        }
+
+        /* sub-role within same company */
+        .sub-role { margin-bottom: 18px; }
+        .sub-role:last-child { margin-bottom: 0; }
+
+        .role-title {
+            font-size: 13px; font-weight: 700; color: var(--blue);
+            margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+        }
+        .role-title .role-period {
+            font-size: 11px; font-weight: 500; color: var(--ink-faint);
+            font-style: normal;
+        }
+
+        .bullet-list { list-style: none; }
+        .bullet-list li {
+            font-size: 13px; font-weight: 300; line-height: 1.65;
+            color: var(--ink-soft);
+            padding: 4px 0 4px 16px;
+            position: relative;
+        }
+        .bullet-list li::before {
+            content: '';
+            position: absolute; left: 0; top: 12px;
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--orange);
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; }
+        }
+
+        @media (max-width: 720px) {
+            .cv-body { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
+            .cv-header { padding: 36px 28px 32px; }
+            .main-content { padding: 32px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ── HEADER ── -->
+    <header class="cv-header">
+        <div class="cv-name">Federico Greco Barragán</div>
+        <div class="cv-role">Account Manager &amp; Product Manager · IT</div>
+        <div class="cv-contacts">
+            <a id="email-link" class="cv-contact">
+                <i class="fa-solid fa-envelope"></i> <span id="email-text"></span>
+            </a>
+            </a>
+            <a href="https://wa.me/5491168762301" class="cv-contact">
+                <i class="fa-brands fa-whatsapp"></i> +54 9 11 6876 2301
+            </a>
+            <a href="https://www.linkedin.com/in/federico-greco-barragán" target="_blank" class="cv-contact">
+                <i class="fa-brands fa-linkedin"></i> federico-greco-barragán
+            </a>
+            <span class="cv-contact">
+                <i class="fa-solid fa-location-dot"></i> Villa Crespo, CABA, Argentina
+            </span>
+        </div>
+    </header>
+
+    <!-- ── BODY ── -->
+    <div class="cv-body">
+
+        <!-- ── SIDEBAR ── -->
+        <aside class="sidebar">
+
+            <!-- PERFIL -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Perfil</div>
+                <p class="sidebar-profile">
+                    KAM &amp; PM con base técnica real en IT. Más de 10 años gestionando cuentas enterprise en LATAM — banca, telco, energía e industria — con foco en servicios de alto valor: Cloud, QA, BI e IA. Combino visión comercial estratégica con comprensión técnica profunda para generar relaciones de largo plazo y crecimiento sostenido.
+                </p>
+            </div>
+
+            <!-- ÁREAS DE EXPERTISE -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Áreas de Expertise</div>
+                <div class="tag-cloud">
+                    <span class="tag highlight">KAM Enterprise</span>
+                    <span class="tag highlight">Venta Consultiva</span>
+                    <span class="tag highlight">Cloud (AWS / GCP)</span>
+                    <span class="tag highlight">BI &amp; Analytics</span>
+                    <span class="tag highlight">IA / LLMs / Agentes</span>
+                    <span class="tag highlight">Estrategia LATAM</span>
+                    <span class="tag">Cross &amp; Upselling</span>
+                    <span class="tag">Forecast Comercial</span>
+                    <span class="tag">Automatización</span>
+                    <span class="tag">Preventa IT</span>
+                    <span class="tag">SLA &amp; Delivery</span>
+                    <span class="tag">Liderazgo de Equipos</span>
+                </div>
+            </div>
+
+            <!-- HERRAMIENTAS COMERCIALIZADAS -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Herramientas Comercializadas</div>
+                <div class="tag-cloud">
+                    <span class="tag highlight">IBM</span>
+                    <span class="tag highlight">Google Cloud</span>
+                    <span class="tag highlight">MicroStrategy</span>
+                    <span class="tag highlight">Make</span>
+                    <span class="tag highlight">AWS</span>
+                </div>
+            </div>
+
+            <!-- HERRAMIENTAS INFORMÁTICAS -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Herramientas Informáticas</div>
+                <div class="tag-cloud">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Google Apps</span>
+                    <span class="tag">Zoho ONE</span>
+                    <span class="tag">Salesforce</span>
+                    <span class="tag">Odoo</span>
+                    <span class="tag">Zapier</span>
+                    <span class="tag">Looker Studio</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Hostinger</span>
+                    <span class="tag">OpenClaw</span>
+                    <span class="tag">IA Agents</span>
+                    <span class="tag">AI (LLMs)</span>
+                    <span class="tag">Power Automate</span>
+                    <span class="tag">HubSpot</span>
+                    <span class="tag">GitHub</span>
+                </div>
+            </div>
+
+            <!-- IDIOMAS -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Idiomas</div>
+                <div class="lang-item">
+                    <div class="lang-name">Español <span>Nativo</span></div>
+                    <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+                </div>
+                <div class="lang-item">
+                    <div class="lang-name">Inglés <span>Intermedio</span></div>
+                    <div class="lang-bar"><div class="lang-fill" style="width:60%"></div></div>
+                </div>
+                <div class="lang-item">
+                    <div class="lang-name">Japonés <span>Básico</span></div>
+                    <div class="lang-bar"><div class="lang-fill" style="width:20%"></div></div>
+                </div>
+            </div>
+
+            <!-- EDUCACIÓN -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Educación y Certificaciones</div>
+
+                <div class="edu-item">
+                    <div class="edu-title">AWS Well-Architected Foundations</div>
+                    <div class="edu-org">Amazon Web Services (AWS)</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">AWS Certified Cloud Practitioner</div>
+                    <div class="edu-org">Amazon Web Services (AWS)</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Bootcamp IA Generativa, LLM &amp; Agentes de IA</div>
+                    <div class="edu-org">Udemy</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Google Cloud Partnership & IBM & MicroStrategy</div>
+                    <div class="edu-org">Certificación</div>
+                    <div class="edu-year">2024</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Programación Make</div>
+                    <div class="edu-org">Certificación</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Data Analytics &amp; Looker Studio</div>
+                    <div class="edu-org">Google pour les Pros</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Project Management</div>
+                    <div class="edu-org">Crehana</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Curso Intensivo de Liderazgo</div>
+                    <div class="edu-org">Capacitarte</div>
+                    <div class="edu-year">2022</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Diseñador Multimedia</div>
+                    <div class="edu-org">Universidad Da Vinci</div>
+                    <div class="edu-year">2022</div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ── MAIN ── -->
+        <main class="main-content">
+
+            <!-- EXPERIENCIA PROFESIONAL -->
+            <section class="section">
+                <h2 class="section-title">Experiencia Profesional</h2>
+
+                <!-- CDA -->
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-company">CDA</div>
+                        <div class="job-period">07/2025 – Actualidad</div>
+                    </div>
+                    <div class="job-location">
+                        <i class="fa-solid fa-building" style="color:var(--blue);margin-right:5px;"></i>
+                        Empresa de tecnología · Consultoría y soluciones IT · Capital Federal, Argentina
+                    </div>
+                    <p class="job-description">
+                        Gestión de cuentas corporativas de gran nivel en una empresa de tecnología especializada en servicios y soluciones IT para grandes cuentas, con presencia regional en Argentina y Latinoamérica.
+                    </p>
+                    <div class="sub-role">
+                        <div class="role-title">Key Account Manager</div>
+                        <ul class="bullet-list">
+                            <li>Gestión de cartera de <strong>5 a 8 cuentas estratégicas</strong> en Argentina y LATAM — sectores banca, energía, telco, industria y retail — con facturación anual gestionada de <strong>USD 500K a 1M</strong>.</li>
+                            <li>Responsable del crecimiento, sostenimiento y rentabilidad de clientes activos mediante estrategias de cross-selling y upselling en servicios de Cloud, QA, Staff Augmentation y Consultoría IT.</li>
+                            <li>Elaboración y seguimiento de forecast comercial mensual y anual: planificación de dotación, proyección de horas y facturación por cliente con seguimiento continuo de desvíos.</li>
+                            <li>Coordinación con Delivery Managers y Administración de Ventas para garantizar cumplimiento de SLA en <strong>5 a 10 proyectos activos simultáneos</strong>, asegurando satisfacción y continuidad operativa.</li>
+                            <li>Participación en la definición de estrategia comercial local (Argentina) y regional (LATAM), incluyendo apertura de nuevas cuentas multipaís.</li>
+                            <li>Elaboración de propuestas comerciales, casos de negocio (CN) y presentaciones ejecutivas para C-level, coordinando preventa, delivery y dirección.</li>
+                            <li>Seguimiento de KPIs críticos: facturación, margen bruto, horas vendidas vs. planificadas, dotación sostenida y satisfacción del cliente.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DICSYS -->
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-company">Dicsys</div>
+                        <div class="job-period">03/2024 – 06/2025</div>
+                    </div>
+                    <div class="job-location">
+                        <i class="fa-solid fa-building" style="color:var(--blue);margin-right:5px;"></i>
+                        Empresa de tecnología · Soluciones end-to-end BI · Capital Federal, Argentina
+                    </div>
+                    <p class="job-description">
+                        Desarrollo de habilidades comerciales y técnicas para impulsar ventas y cumplir objetivos de negocio en soluciones de Business Intelligence.
+                    </p>
+                    <div class="sub-role">
+                        <div class="role-title">Account Manager</div>
+                        <ul class="bullet-list">
+                            <li>Gestión del ciclo de venta completo (full sales cycle) para soluciones BI/Analytics: desde prospección hasta cierre, incorporando <strong>3 a 5 nuevas cuentas</strong> durante el período.</li>
+                            <li>Desarrollo e implementación de estrategia de generación de leads en colaboración con Marketing, manteniendo un pipeline activo y calificado de oportunidades en LATAM y Centroamérica.</li>
+                            <li>Gestión de red de contactos estratégicos en Centroamérica, concretando oportunidades de alto impacto en mercados con clientes regionales de envergadura.</li>
+                            <li>Liderazgo de negociaciones de contratos y términos comerciales, posicionando diferenciadores de soluciones IBM, Google Cloud y MicroStrategy frente a la competencia.</li>
+                            <li>Benchmarking competitivo continuo para ajustar propuestas de valor y responder ágilmente a movimientos del mercado.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PERSAT -->
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-company">Persat</div>
+                        <div class="job-period">06/2018 – 01/2024</div>
+                    </div>
+                    <div class="job-location">
+                        <i class="fa-solid fa-building" style="color:var(--blue);margin-right:5px;"></i>
+                        Soluciones integrales para gestión de recursos móviles · Capital Federal, Argentina
+                    </div>
+                    <p class="job-description">
+                        Trayectoria con roles comerciales, técnicos y estratégicos que reflejan un crecimiento continuo en gestión de cuentas, análisis de datos, automatización y liderazgo.
+                    </p>
+
+                    <div class="sub-role">
+                        <div class="role-title">
+                            Consultor
+                            <span class="role-period">/ período final</span>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Rediseño de procesos internos críticos, logrando una reducción estimada del <strong>40% a 60% en tiempos operativos</strong> mediante automatización y digitalización de flujos.</li>
+                            <li>Implementación de herramientas de gestión documental y automatizaciones (Make, Zapier) para áreas de operaciones, ventas y soporte.</li>
+                            <li>Diseño de procedimientos de calidad y flujogramas funcionales adoptados transversalmente por distintas áreas de la organización.</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-role">
+                        <div class="role-title">
+                            Product Manager &amp; Software Engineer
+                            <span class="role-period">09/2021 – 01/2024</span>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Liderazgo de producto para soluciones SaaS de gestión de recursos móviles, coordinando roadmap, priorización y entrega con equipos técnicos.</li>
+                            <li>Implementación de automatizaciones no-code (Make, Zapier) que redujeron entre un <strong>40% y 60%</strong> las tareas manuales en procesos de onboarding y soporte a clientes.</li>
+                            <li>Administración de bases de datos relacionales y desarrollo de integraciones a medida para clientes corporativos del segmento logístico y de servicios.</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-role">
+                        <div class="role-title">
+                            Account Manager – Key Account
+                            <span class="role-period">01/2020 – 08/2021</span>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Gestión de cuentas clave mediante consultoría IT especializada en análisis de big data, BI y soluciones de trazabilidad logística.</li>
+                            <li>Diseño e implementación de automatizaciones que generaron reducciones significativas en tiempos operativos de clientes.</li>
+                            <li>Organización y liderazgo de <strong>más de 10 capacitaciones, webinars y charlas técnicas</strong> para clientes internos y externos, mejorando adopción y retención del producto.</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-role">
+                        <div class="role-title">
+                            Asesor Grandes Cuentas &amp; Asesor Comercial
+                            <span class="role-period">06/2018 – 12/2019</span>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Cierre de ventas y negociaciones con cuentas clave del segmento logístico y de servicios.</li>
+                            <li>Gestión comercial con CRM, demostraciones técnicas del producto y soporte a equipos de Customer Success.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCIA TEMPRANA -->
+                <div class="job">
+                    <div class="job-header">
+                        <div class="job-company" style="font-size:14px;color:var(--ink-soft);">Experiencia Temprana</div>
+                        <div class="job-period">2010 – 2018</div>
+                    </div>
+                    <div class="job-location">
+                        <i class="fa-solid fa-building" style="color:var(--ink-faint);margin-right:5px;"></i>
+                        Finning CAT (Caterpillar) · Electronic Things · Aitech Soluciones · Némesis Games
+                    </div>
+                    <ul class="bullet-list" style="margin-top:10px;">
+                        <li><strong>Finning CAT (2017–2018):</strong> Account Manager en distribuidor oficial Caterpillar. Gestión de cuentas corporativas, uso de ERP/CRM/WMS y participación en implementación SAP.</li>
+                        <li><strong>Aitech Soluciones (2015–2016):</strong> Programador VB y C++, diseño de bases de datos relacionales y soporte técnico de hardware — base técnica IT.</li>
+                        <li><strong>Electronic Things (2016–2017):</strong> Encargado de Ventas, supervisión de 8 tiendas, gestión de equipos y estrategia comercial retail.</li>
+                        <li><strong>Némesis Games (2010–2014):</strong> Primera experiencia en liderazgo operativo y gestión de equipo en entorno retail.</li>
+                    </ul>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="background:var(--ink);padding:20px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:12px;color:rgba(255,255,255,0.25);">Federico Greco Barragán · CV 2026</span>
+                <span style="font-size:12px;color:rgba(255,255,255,0.25);">federicogrecobarragan@gmail.com · +54 9 11 6876 2301</span>
+    </footer>
+
+    <script>
+        // Build email dynamically to avoid scraping/obfuscation
+        const u = 'federicogrecobarragan';
+        const d = 'gmail.com';
+        const el = document.getElementById('email-link');
+        const txt = document.getElementById('email-text');
+        if (el && txt) {
+            const addr = u + '@' + d;
+            el.href = 'mailto:' + addr;
+            txt.textContent = addr;
+        }
+    </script>
+
+</body>
+</html>
